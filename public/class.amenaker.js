@@ -1,4 +1,4 @@
-class Trchyun {
+class Amenaker {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;
@@ -47,10 +47,9 @@ class Trchyun {
     }
 
     sharjvel() {
-       
+
         var vand = random(this.yntrelVandak(0));
-        if (vand ) {
-             console.log(1)
+        if (vand) {
             this.energy--;
             matrix[this.y][this.x] = 0;
             this.x = vand[0]; this.y = vand[1];
@@ -59,21 +58,39 @@ class Trchyun {
         }
     }
 
+    utel() 
+        this.energy--;
+        var vand = random(this.yntrelVandak(2));
+        if (vand && this.multiply >= this.speed / 2) {
+            console.log("Kera");
+            this.energy += this.speed / 2;
+            matrix[this.y][this.x] = 0;
+            this.x = vand[0]; this.y = vand[1];
+            matrix[this.y][this.x] = 4;
+            for (var i in xotakerArr) {
+                if (xotakerArr[i].x == this.x && xotakerArr[i].y == this.y) {
+                    xotakerArr.splice(i, 1);
+                }
+            }
+        }
+        else this.sharjvel();
+    }
+
     bazmanal() {
         var vand = random(this.yntrelVandak(0));
         if (vand && this.energy >= this.speed) {
             this.energy = 1;
-            var newtrchyun = new Trchyun(vand[0], vand[1], 4);
-            trchyunArr.push(newtrchyun);
+            var newamenaker = new Amenaker(vand[0], vand[1], 4);
+            amenakerArr.push(newamenaker);
         }
     }
 
     mahanal() {
         if (this.energy <= -(this.speed / 2)) {
             matrix[this.y][this.x] = 0;
-            for (var i in trchyunArr) {
-                if (trchyunArr[i].x == this.x && trchyunArr[i].y == this.y) {
-                    trchyunArr.splice(i, 1);
+            for (var i in amenakerArr) {
+                if (amenakerArr[i].x == this.x && amenakerArr[i].y == this.y) {
+                    amenakerArr.splice(i, 1);
                 }
             }
         }

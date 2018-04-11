@@ -83,10 +83,11 @@ function draw() {
         gishatichArr[i].mahanal();
     }
     for (var i in amenakerArr) {
-        amenakerArr[i].bazmanal();
         amenakerArr[i].utel();
         amenakerArr[i].sharjvel();
         amenakerArr[i].mahanal();
     }
+
+    console.log(matrix);
 
 }

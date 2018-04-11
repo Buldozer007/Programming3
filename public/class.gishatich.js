@@ -20,7 +20,7 @@ class Gishatich {
 
     }
     yntrelVandak(ch) {
-        this.stanalNorKordinatner();
+        this.stanalNorKoordinatner();
         var found = [];
         for (var i in this.directions) {
             var x = this.directions[i][0];
@@ -33,7 +33,7 @@ class Gishatich {
         }
         return found;
     }
-    stanalNorKordinatner() {
+    stanalNorKoordinatner() {
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
@@ -60,7 +60,7 @@ class Gishatich {
         this.energy--;
         var vand = random(this.yntrelVandak(2));
         if (vand && this.multiply >= this.speed / 2) {
-            console.log("Hoshoteci");
+            //console.log("Hoshoteci");
             this.energy += this.speed / 2;
             matrix[this.y][this.x] = 0;
             this.x = vand[0]; this.y = vand[1];
@@ -78,7 +78,7 @@ class Gishatich {
         var vand = random(this.yntrelVandak(0));
         if (vand && this.energy >= this.speed) {
             this.energy = 1;
-            var newgishatich = new Gishatich(vand[0], vand[1], 4);
+            var newgishatich = new Gishatich(vand[0], vand[1], 3);
             gishatichArr.push(newgishatich);
         }
     }

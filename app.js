@@ -1,4 +1,4 @@
-var express = require('express');
+/*var express = require('express');
 var path = require('path');
 var app = express();
 
@@ -11,4 +11,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 var server = app.listen(app.get('port'), function() {
   var port = server.address().port;
   console.log('Magic happens on port ' + port);
+});*/
+var express = require("express");
+var app = express();
+
+app.use(express.static("public"));
+
+app.get("/", function(req, res){
+   res.redirect("index.html");
 });
+
+app.listen(3000, function(){
+   console.log("Example is running on port 3000");
+});
+

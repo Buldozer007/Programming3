@@ -1,4 +1,7 @@
-class Xotaker {
+var Parent = require('./class.parnet.js');
+
+
+class Xotaker extends Parent {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;

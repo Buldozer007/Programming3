@@ -16,7 +16,7 @@ class Amenaker {
             [this.x - 1, this.y + 1],
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
-        ];
+            ];
     }
 
     stanalNorKoordinatner() {
@@ -57,11 +57,11 @@ class Amenaker {
         }
     }
     utel() {
-        this.energy-=3;
-        this.multiply+=3;
+        this.energy -= 3;
+        this.multiply += 3;
         var vand = random(this.yntrelVandak(1 || 2 || 3))
         if (vand && this.multiply >= this.speed / 2) {
-           // console.log('kera');
+            // console.log('kera');
             this.energy += this.speed / 4;
             matrix[this.y][this.x] = 0;
             this.x = vand[0]; this.y = vand[1];
@@ -81,13 +81,13 @@ class Amenaker {
                     gishatichArr.splice(i, 1);
                 }
             }
-            
+
         }
         else this.sharjvel();
     }
     mahanal() {
         if (this.energy <= -(this.speed / 2)) {
-            //console.log('X_Xs');
+            //console.log('X_X');
             matrix[this.y][this.x] = 0;
             for (var i in amenakerArr) {
                 if (amenakerArr[i].x == this.x && amenakerArr[i].y == this.y) {

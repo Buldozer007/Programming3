@@ -88,6 +88,6 @@ function draw() {
         amenakerArr[i].mahanal();
     }
 
-    console.log(matrix);
+   // console.log(matrix);
 
 }

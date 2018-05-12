@@ -11,8 +11,6 @@ var Grass = require('./class/class.grass.js');
 app.use(express.static("public"));
 app.get("/", function (req, res) {
     res.redirect("public");
-
-
 });
 
 server.listen(3000);
@@ -60,13 +58,7 @@ function setup() {
     }
 }
 
-io.on("connection", function (socket) {
-    io.sockets.emit("gen matrix", matrix);
 
-    socket.on('send matrix', function (data) {
-            io.sockets.emit('gen matrix', data)
-    })
-});
 
 function Characters() {
     for (var i in grassArr) {
@@ -89,8 +81,17 @@ function Characters() {
         amenakerArr[i].sharjvel();
         amenakerArr[i].mahanal();
     }
+  
 }
-
+  io.on("connection", function (socket) {
+        for (var i in matrix) {
+            io.sockets.emit("gen matrix", matrix[i]);
+        }
+        socket.on('send matrix', function (data) {
+            matrix.push(data);
+            io.sockets.emit('gen matrix', data)
+        })
+    });
 setInterval(Characters, 200);
 
 

@@ -7,7 +7,7 @@ function setup() {
 }
 
 function genMatrix(matrix) {
-    background("#acacac");
+    //background("#acacac");
     for (var y in matrix) {
         for (var x in matrix[y]) {
             if (matrix[y][x] == 0) {
@@ -28,11 +28,13 @@ function genMatrix(matrix) {
             rect(x * side, y * side, side, side);
         }
     }
+    //socket.emit("send matrix", matrix);
+
 
     // console.log(matrix);
 
-    socket.emit("send matrix", matrix);
 
 }
+
+
 socket.on("gen matrix", genMatrix);
- 

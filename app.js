@@ -15,7 +15,7 @@ app.get("/", function (req, res) {
 
 server.listen(3000);
 
-var matrix;
+var matrix ;
 var w = 30;
 var h = 30;
 var side = 24;
@@ -83,17 +83,5 @@ function Characters() {
     }
   
 }
-  io.on("connection", function (socket) {
-        for (var i in matrix) {
-            io.sockets.emit("gen matrix", matrix[i]);
-        }
-        socket.on('send matrix', function (data) {
-            matrix.push(data);
-            io.sockets.emit('gen matrix', data)
-        })
-    });
+ 
 setInterval(Characters, 200);
-
-
-
-

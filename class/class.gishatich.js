@@ -2,7 +2,7 @@ var Parent = require('./class.parent.js');
 
 class Gishatich extends Parent {
     constructor(x, y, index) {
-        super(x,xy,index);
+        super(x,y,index);
     }
     yntrelVandak(ch) {
         this.stanalNorKoordinatner();

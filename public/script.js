@@ -28,13 +28,8 @@ function genMatrix(matrix) {
             rect(x * side, y * side, side, side);
         }
     }
-    //socket.emit("send matrix", matrix);
-
-
-    // console.log(matrix);
-
-
+// console.log(matrix);
 }
 
 
-socket.on("gen matrix", genMatrix);
+

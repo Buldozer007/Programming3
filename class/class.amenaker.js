@@ -1,6 +1,6 @@
 var Parent = require('./class.parent.js');
 
-class Amenaker extends Parent {
+module.exports = class Amenaker extends Parent {
     constructor(x, y, index) {
         super(x, y, index);
     }
@@ -24,7 +24,7 @@ class Amenaker extends Parent {
     }
 
     sharjvel() {
-        var vandak = random(this.yntrelVandak(0))
+        var vandak = this.yntrelVandak(0)[Math.floor(Math.random() * this.yntrelVandak(0).length)]
         if (vandak && this.multiply >= this.speed / 4) {
             this.energy--;
             matrix[this.y][this.x] = 0;
@@ -35,7 +35,7 @@ class Amenaker extends Parent {
     utel() {
         this.energy -= 3;
         this.multiply += 3;
-        var vand = random(this.yntrelVandak(1 || 2 || 3))
+        var vand = this.yntrelVandak(1 || 2 || 3)[Math.floor(Math.random()* this.yntrelVandak(1 || 2 || 3).length)]
         if (vand && this.multiply >= this.speed / 2) {
             // console.log('kera');
             this.energy += this.speed / 4;

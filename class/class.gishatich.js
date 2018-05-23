@@ -1,6 +1,6 @@
 var Parent = require('./class.parent.js');
 
-class Gishatich extends Parent {
+module.exports = class Gishatich extends Parent {
     constructor(x, y, index) {
         super(x,y,index);
     }
@@ -22,7 +22,7 @@ class Gishatich extends Parent {
     }
 
     sharjvel() {
-        var vand = random(this.yntrelVandak(0));
+        var vand = this.yntrelVandak(0)[Math.floor(Math.random() * this.yntrelVandak(0).length)];
         if (vand && this.multiply >= this.speed / 2) {
             this.energy--;
             matrix[this.y][this.x] = 0;
@@ -33,7 +33,7 @@ class Gishatich extends Parent {
 
     utel() {
         this.energy--;
-        var vand = random(this.yntrelVandak(2));
+        var vand = this.yntrelVandak(2)[Math.floor(Math.random() * this.yntrelVandak(2).lenght)];
         if (vand && this.multiply >= this.speed / 2) {
             //console.log("Hoshoteci");
             this.energy += this.speed / 2;
@@ -50,7 +50,7 @@ class Gishatich extends Parent {
     }
 
     bazmanal() {
-        var vand = random(this.yntrelVandak(0));
+        var vand = this.yntrelVandak(0)[Math.floor(Math.random() * this.yntrelVandak(0).length)];
         if (vand && this.energy >= this.speed) {
             this.energy = 1;
             var newgishatich = new Gishatich(vand[0], vand[1], 3);

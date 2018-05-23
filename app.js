@@ -2,10 +2,11 @@ var express = require("express");
 var app = express();
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
-var Xotaker = require('./class/class.xotaker.js');
-var Amenaker = require('./class/class.amenaker.js');
-var Gishatich = require('./class/class.gishatich.js');
-var Grass = require('./class/class.grass.js');
+global.Xotaker = require('./class/class.xotaker.js');
+global.Amenaker = require('./class/class.amenaker.js');
+global.Gishatich = require('./class/class.gishatich.js');
+global.Grass = require('./class/class.grass.js');
+global.Parent = require('./class/class.parent.js')
 
 
 app.use(express.static("public"));
@@ -15,32 +16,40 @@ app.get("/", function (req, res) {
 
 server.listen(3000);
 
-var matrix ;
+global.matrix = [];
 var w = 30;
 var h = 30;
 var side = 24;
-var grassArr = [], xotakerArr = [], gishatichArr = [], amenakerArr = [];
+global.grassArr = [], global.xotakerArr = [], global.gishatichArr = [], global.amenakerArr = [];
 
-function genMatrix(w, h) {
-    var matrix = [];
-    for (var y = 0; y < h; y++) {
-        matrix[y] = [];
-        for (var x = 0; x < w; x++) {
-            var r = random(120);
-            if (r < 20) r = 0;
-            else if (r < 65) r = 1;
-            else if (r < 90) r = 2;
-            else if (r < 100) r = 3;
-            else if (r < 120) r = 4;
-            matrix[y][x] = r;
-        }
-    }
-    return matrix;
-}
+
+io.on('connection' , function (){
 
 function setup() {
+    function genMatrix(w, h) {
+        var matrixArr = [];
+        for (var y = 0; y < h; y++) {
+            matrixArr[y] = [];
+            for (var x = 0; x < w; x++) {
+                var r = Math.random() * 105;
+                if (r < 20) r = 0;
+                else if (r < 65) r = 1;
+                else if (r < 90) r = 2;
+                else if (r < 100) r = 3;
+                else if (r < 105) r = 4;
+                matrixArr[y][x] = r;
+            }
+        }
+        return matrixArr;
+    }
     matrix = genMatrix(w, h);
-    for (var y in matrix) {
+}
+
+io.sockets.emit('gM' , matrix);
+setup();
+
+function Characters() {
+     for (var y in matrix) {
         for (var x in matrix[y]) {
             if (matrix[y][x] == 1) {
                 grassArr.push(new Grass(x * 1, y * 1, 1));
@@ -56,11 +65,6 @@ function setup() {
             }
         }
     }
-}
-
-
-
-function Characters() {
     for (var i in grassArr) {
         grassArr[i].mul();
     }
@@ -81,7 +85,11 @@ function Characters() {
         amenakerArr[i].sharjvel();
         amenakerArr[i].mahanal();
     }
-  
+
+    io.sockets.emit('Characters' , matrix);
+
 }
- 
-setInterval(Characters, 200);
+
+setInterval(Characters, 1000);
+
+})

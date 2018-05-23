@@ -1,35 +1,41 @@
 var socket = io();
+var side = 24;
+var w = 30;
+var h = 30;
 
 function setup() {
-    createCanvas(800, 800);
-    background("#acacac");
-    frameRate(5);
+    socket.on('gM', function (firstmatrix) {
+        createCanvas(side * w, side * h);
+        background("#acacac");
+        frameRate(1);
+    })
+
 }
 
-function genMatrix(matrix) {
+socket.on("Characters" , function (matrixArr) {
     //background("#acacac");
-    for (var y in matrix) {
-        for (var x in matrix[y]) {
-            if (matrix[y][x] == 0) {
+    for (var y in matrixArr) {
+        for (var x in matrixArr[y]) {
+            if (matrixArr[y][x] == 0) {
                 fill("#acacac");
             }
-            else if (matrix[y][x] == 1) {
+            else if (matrixArr[y][x] == 1) {
                 fill("green");
             }
-            else if (matrix[y][x] == 2) {
+            else if (matrixArr[y][x] == 2) {
                 fill("yellow");
             }
-            else if (matrix[y][x] == 3) {
+            else if (matrixArr[y][x] == 3) {
                 fill("red");
             }
-            else if (matrix[y][x] == 4) {
+            else if (matrixArr[y][x] == 4) {
                 fill("blue");
             }
             rect(x * side, y * side, side, side);
         }
     }
-// console.log(matrix);
-}
+     console.log(matrixArr);
+})
 
 
 

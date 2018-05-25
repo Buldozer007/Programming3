@@ -32,12 +32,12 @@ function setup() {
         for (var y = 0; y < h; y++) {
             matrixArr[y] = [];
             for (var x = 0; x < w; x++) {
-                var r = Math.floor(Math.random () * 100)
+                var r = Math.floor(Math.random () * 120);
                 if (r < 20) r = 0;
-                else if (r < 40) r = 1;
-                else if (r < 60) r = 2;
-                else if (r < 80) r = 3;
-                else if (r < 100) r = 4;
+                else if (r < 65) r = 1;
+                else if (r < 90) r = 2;
+                else if (r < 100) r = 3;
+                else if (r < 120) r = 4;
                 matrixArr[y][x] = r;
             }
         }
@@ -107,7 +107,7 @@ function changeSeason() {
     io.sockets.emit('cS' , season);
 };
 
-setInterval(Characters, 1000);
-setInterval(changeSeason , 3000);
+setInterval(Characters, 200);
+setInterval(changeSeason , 1000);
 
 })

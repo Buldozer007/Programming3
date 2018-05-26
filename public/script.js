@@ -73,6 +73,9 @@ function setup() {
                             fill("#3498DB");
                         }
                     }
+                    else if (matrixArr[y][x] == 5) {
+                        fill("#ff8e05");
+                    }
                     rect(x * side, y * side, side, side);
                 }
             }

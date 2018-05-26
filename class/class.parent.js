@@ -6,6 +6,9 @@ module.exports = class Parent {
         this.energy = Math.round(Math.random() * 24);
         this.multiply = Math.round(Math.random() * 24);
         this.speed = 24;
+        //this.ser = (Math.round(ser)==ser)?"arakan":"igakan";
+        //this.temp = temp;
+        //this.bazm = false;
         matrix[this.y][this.x] = this.index;
         this.directions = [
             [this.x - 1, this.y - 1],
@@ -34,4 +37,4 @@ module.exports = class Parent {
     }
 
 
-}
+} 

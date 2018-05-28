@@ -7,7 +7,7 @@ global.Amenaker = require('./class/class.amenaker.js');
 global.Gishatich = require('./class/class.gishatich.js');
 global.Grass = require('./class/class.grass.js');
 global.Parent = require('./class/class.parent.js');
-global.Bomb = require('./class/class.bomb.js');
+
 
 
 app.use(express.static("public"));
@@ -22,7 +22,7 @@ global.season = "Winter";
 var w = 30;
 var h = 30;
 var side = 24;
-global.grassArr = [], global.xotakerArr = [], global.gishatichArr = [], global.amenakerArr = [], global.bombArr = [];
+global.grassArr = [], global.xotakerArr = [], global.gishatichArr = [], global.amenakerArr = [];
 
 
 io.on('connection', function () {
@@ -33,13 +33,12 @@ io.on('connection', function () {
             for (var y = 0; y < h; y++) {
                 matrixArr[y] = [];
                 for (var x = 0; x < w; x++) {
-                    var r = Math.floor(Math.random() * 120);
-                    if (r < 10) r = 5
-                    else if (r < 20) r = 0;
+                    var r = Math.floor(Math.random() * 100);
+                    if (r < 20) r = 0;
                     else if (r < 65) r = 1;
-                    else if (r < 90) r = 2;
+                    else if (r < 80) r = 2;
+                    else if (r < 90) r = 4;
                     else if (r < 100) r = 3;
-                    else if (r < 120) r = 4;
                     matrixArr[y][x] = r;
                 }
             }
@@ -66,9 +65,6 @@ io.on('connection', function () {
                 else if (matrix[y][x] == 4) {
                     amenakerArr.push(new Amenaker(x * 1, y * 1, 4))
                 }
-                else if (matrix[y][x] == 5) {
-                    bombArr.push(new Bomb(x * 1, y * 1, 5))
-                }
             }
         }
         for (var i in grassArr) {
@@ -87,14 +83,12 @@ io.on('connection', function () {
             gishatichArr[i].mahanal();
         }
         for (var i in amenakerArr) {
-            amenakerArr[i].utel();
             amenakerArr[i].sharjvel();
+            amenakerArr[i].bazmanal();
+            amenakerArr[i].utel();
             amenakerArr[i].mahanal();
         }
-        for (var i in bombArr) {
-            bombArr[i].paytyun();
-        }
-
+        
         io.sockets.emit('Characters', matrix);
 
     }

@@ -1,8 +1,8 @@
 var Parent = require('./class.parent.js');
 
 module.exports = class Gishatich extends Parent {
-    constructor(x, y, index) {
-        super(x,y,index);
+    constructor(x, y, index,ser) {
+        super(x,y,index,ser);
     }
     yntrelVandak(ch) {
         this.stanalNorKoordinatner();
@@ -50,12 +50,21 @@ module.exports = class Gishatich extends Parent {
     }
 
     bazmanal() {
-        var vand = this.yntrelVandak(0)[Math.floor(Math.random() * this.yntrelVandak(0).length)];
+        if (this.ser == "arakan") {
+            var vandak = this.yntrelVandak(3.5)[Math.floor(Math.random() * this.yntrelVandak(3.5).length)];
+        }
+        else if (this.ser == "igakan") {
+            var vandak = this.yntrelVandak(3)[Math.floor(Math.random() * this.yntrelVandak(3).length)];
+        }
+        if(vandak){
+            var vand = this.yntrelVandak(0)[Math.floor(Math.random() * this.yntrelVandak(0).length)];
+        }
         if (vand && this.energy >= this.speed) {
             this.energy = 1;
             var newgishatich = new Gishatich(vand[0], vand[1], 3);
             gishatichArr.push(newgishatich);
         }
+
     }
 
     mahanal() {

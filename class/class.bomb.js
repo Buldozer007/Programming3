@@ -1,3 +1,5 @@
+//Չհասցրի :(((((
+
 var Parent = require("./class.parent.js");
 
 module.exports = class Bomb extends Parent {

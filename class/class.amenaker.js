@@ -1,8 +1,8 @@
 var Parent = require('./class.parent.js');
 
 module.exports = class Amenaker extends Parent {
-    constructor(x, y, index) {
-        super(x, y, index);
+    constructor(x, y, index,ser) {
+        super(x, y, index,ser);
     }
 
     stanalNorKoordinatner() {
@@ -61,6 +61,24 @@ module.exports = class Amenaker extends Parent {
         }
         else this.sharjvel();
     }
+
+    bazmanal() {
+        if (this.ser == "arakan") {
+            var vandak = this.yntrelVandak(4.5)[Math.floor(Math.random() * this.yntrelVandak(4.5).length)];
+        }
+        else if (this.ser == "igakan") {
+            var vandak = this.yntrelVandak(4)[Math.floor(Math.random() * this.yntrelVandak(4).length)];
+        }
+        if (vandak) {
+            var vand = this.yntrelVandak(0)[Math.floor(Math.random() * this.yntrelVandak(0).length)];
+        }
+        if (vand && this.energy >= this.speed) {
+            this.energy = 1;
+            var newamenaker = new Amenaker(vand[0], vand[1], 4);
+           amenakerArr.push(newamenaker);
+        }
+    }
+
     mahanal() {
         if (this.energy <= -(this.speed / 2)) {
             //console.log('X_X');

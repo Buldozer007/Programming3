@@ -1,14 +1,12 @@
 module.exports = class Parent {
-    constructor(x, y, index) {
+    constructor(x, y, index,ser) {
         this.x = x;
         this.y = y;
         this.index = index;
         this.energy = Math.round(Math.random() * 24);
         this.multiply = Math.round(Math.random() * 24);
         this.speed = 24;
-        //this.ser = (Math.round(ser)==ser)?"arakan":"igakan";
-        //this.temp = temp;
-        //this.bazm = false;
+        this.ser = (ser == 0 ? "arakan" : "igakan");
         matrix[this.y][this.x] = this.index;
         this.directions = [
             [this.x - 1, this.y - 1],
